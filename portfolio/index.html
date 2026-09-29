@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キムテヒョン | Developer Portfolio</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="business-card">
+        <div class="left-bar"></div>
+
+        <header class="header">
+            <div class="top-line"></div>
+            <h1 lang="ja">デベロッパーポートフォリオ</h1>
+        </header>
+
+        <div class="main-layout">
+            <section class="contents-menu" aria-label="포트폴리오 목차">
+                <button class="menu-box" type="button" aria-haspopup="dialog" aria-controls="portfolio-modal" data-section="profile">
+                    <span class="menu-title">PROFILE</span>
+
+                    <svg class="menu-art" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+                        <circle cx="60" cy="38" r="19" />
+                        <path d="M32 99 Q34 70 60 70 Q86 70 88 99" />
+                        <circle cx="60" cy="60" r="53" />
+                    </svg>
+
+                    <span class="menu-arrow" aria-hidden="true">↗</span>
+                </button>
+
+                <button class="menu-box" type="button" aria-haspopup="dialog" aria-controls="portfolio-modal" data-section="skills">
+                    <span class="menu-title">SKILLS</span>
+
+                    <svg class="menu-art" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+                        <path d="M53 12h14l3 12 9 4 11-6 10 10-6 11 4 9 12 3v14l-12 3-4 9 6 11-10 10-11-6-9 4-3 12H53l-3-12-9-4-11 6-10-10 6-11-4-9-12-3V55l12-3 4-9-6-11 10-10 11 6 9-4 3-12Z" />
+                        <circle cx="60" cy="62" r="19" />
+                    </svg>
+                    <span class="menu-arrow" aria-hidden="true">↗</span>
+                </button>
+
+                <button class="menu-box featured" type="button" aria-haspopup="dialog" aria-controls="portfolio-modal" data-section="projects">
+                    <span class="menu-title">PROJECTS</span>
+
+                    <svg class="menu-art" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+                        <path d="M13 36V26a7 7 0 0 1 7-7h27l11 12h42a7 7 0 0 1 7 7v57a7 7 0 0 1-7 7H20a7 7 0 0 1-7-7V36Z" />
+                        <path d="M13 44h94M44 73l11 11 23-25" />
+                    </svg>
+
+                    <span class="menu-arrow" aria-hidden="true">↗</span>
+                </button>
+
+                <button class="menu-box" type="button" aria-haspopup="dialog" aria-controls="portfolio-modal" data-section="career">
+                    <span class="menu-title">CAREER</span>
+
+                    <svg class="menu-art" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+                        <path d="M21 99V74h22v25M49 99V55h22v44M77 99V37h22v62M15 99h91" />
+                        <path d="m24 47 28-15 18 7 26-23M84 16h12v12" />
+                    </svg>
+
+                    <span class="menu-arrow" aria-hidden="true">↗</span>
+                </button>
+            </section>
+
+            <aside class="intro-area" aria-label="소개 및 연락처">
+                <div class="intro-copy" lang="ja">
+                    <span class="eyebrow">DIRECTION</span>
+                    <p class="intro-title">学び続け、<br>形にしていく。</p>
+                    <p class="intro-description">
+                        日本のIT企業への就職を目指し、<br>プログラミングを学んでいます。
+                    </p>
+                </div>
+
+                <section class="contact-info">
+                    <h2>CONTACT</h2>
+                    <p class="contact-name">キムテヒョン</p>
+                    <p>010-6491-3739</p>
+                    <p>pds838a@gmail.com</p>
+                </section>
+            </aside>
+        </div>
+
+        <div class="bottom-bar"></div>
+    </main>
+
+    <!-- 메뉴를 클릭하면 열리는 팝업 -->
+    <div class="modal" id="portfolio-modal" hidden>
+        <div class="modal-backdrop"></div>
+
+        <section
+            class="modal-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+            tabindex="-1"
+        >
+            <div class="modal-topline"></div>
+
+            <div class="modal-header">
+                <div>
+                    <span class="modal-number" id="modal-number"></span>
+                    <h2 id="modal-title"></h2>
+                </div>
+
+                <button class="modal-close" type="button" aria-label="창 닫기">
+                    ×
+                </button>
+            </div>
+
+            <div class="modal-body" id="modal-body"></div>
+        </section>
+    </div>
+</body>
+</html>
