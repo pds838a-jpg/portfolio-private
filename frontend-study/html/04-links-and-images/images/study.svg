@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="220" viewBox="0 0 360 220">
+  <rect width="360" height="220" rx="12" fill="#eef3fb"/>
+  <rect x="35" y="25" width="290" height="170" rx="8" fill="white" stroke="#c3d1e3"/>
+  <g font-family="sans-serif" font-size="24" fill="#243447">
+    <text x="60" y="75">HTML</text><text x="60" y="120">CSS</text><text x="60" y="165">JavaScript</text>
+  </g>
+  <g stroke="#7795bf" stroke-width="3"><path d="M205 68h85M205 113h85M205 158h85"/></g>
+</svg>
