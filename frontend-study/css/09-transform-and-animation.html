@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>변형과 움직임</title>
+  <style>
+body { font-family: sans-serif; margin: 24px; line-height: 1.6; }
+button { padding: 12px; transition: transform .2s ease; }
+button:hover, button:focus-visible { transform: translateY(-2px); }
+.track { padding: 24px 0; }
+.marker { width: 64px; padding: 12px; background: #def; animation: slide 1s ease-in-out alternate infinite; }
+@keyframes slide { from { transform: translateX(0); } to { transform: translateX(24px); } }
+@media (prefers-reduced-motion: reduce) { button { transition: none; } .marker { animation: none; } }
+  </style>
+</head>
+<body>
+<h1>상태 변화와 애니메이션</h1><button type="button">살짝 움직이는 버튼</button><div class="track"><div class="marker">이동</div></div><p>transform은 주변 요소의 일반 배치를 다시 만들지 않습니다.</p>
+</body>
+</html>

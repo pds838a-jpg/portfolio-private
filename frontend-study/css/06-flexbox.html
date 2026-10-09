@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flexbox의 두 축</title>
+  <style>
+body { font-family: sans-serif; margin: 24px; line-height: 1.6; }
+/* justify-content는 주축, align-items는 교차축 */
+.container { display: flex; justify-content: center; align-items: center; min-height: 240px; gap: 12px; border: 2px solid #345; margin: 16px 0; }
+.row { flex-direction: row; flex-wrap: wrap; }
+.column { flex-direction: column; }
+span { padding: 12px; background: #def; }
+  </style>
+</head>
+<body>
+<h1>row와 column 비교</h1><div class="container row"><span>HTML</span><span>CSS</span><span>JS</span></div><div class="container column"><span>HTML</span><span>CSS</span><span>JS</span></div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>위치와 글 흐름</title>
+  <style>
+body { font-family: sans-serif; margin: 24px; line-height: 1.6; }
+.parent { position: relative; min-height: 120px; border: 2px solid #345; padding: 16px; }
+.badge { position: absolute; top: 8px; right: 8px; padding: 6px; background: #def; }
+.picture { float: left; width: 100px; height: 80px; margin: 0 16px 8px 0; background: #fdd; }
+.clear { clear: both; }
+.flow { margin-top: 24px; }
+  </style>
+</head>
+<body>
+<h1>배치 기준</h1><div class="parent"><span class="badge">absolute</span><p>부모는 relative입니다.</p></div><section class="flow"><div class="picture">이미지 자리</div><p>float 옆으로 글이 흐릅니다. 글의 길이를 늘려 흐름을 비교해 보세요.</p><p class="clear">clear 이후의 문단입니다.</p></section>
+</body>
+</html>
