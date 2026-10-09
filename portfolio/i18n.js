@@ -50,7 +50,7 @@ const translationRows = [
     ["旅行写真の仮画像 · テスト用", "여행 사진 자리 · 테스트 이미지", "Travel photo placeholder · Test image"],
     ["筋力トレーニング写真の仮画像 · テスト用", "헬스 사진 자리 · 테스트 이미지", "Training photo placeholder · Test image"],
     ["バドミントン写真の仮画像 · テスト用", "배드민턴 사진 자리 · 테스트 이미지", "Badminton photo placeholder · Test image"],
-    ["テスト用の猫の写真", "테스트용 고양이 사진", "Test photo of a cat"],
+    ["キム テヒョンのプロフィール写真", "김태형의 프로필 사진", "Profile photo of Kim Taehyeong"],
     ["旅行写真の仮画像（テスト用の風景写真）", "여행 사진 자리의 테스트용 풍경 사진", "Travel placeholder: test landscape photo"],
     ["筋力トレーニング写真の仮画像（テスト用の風景写真）", "헬스 사진 자리의 테스트용 풍경 사진", "Training placeholder: test landscape photo"],
     ["バドミントン写真の仮画像（テスト用の風景写真）", "배드민턴 사진 자리의 테스트용 풍경 사진", "Badminton placeholder: test landscape photo"],

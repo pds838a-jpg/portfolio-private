@@ -14,8 +14,7 @@ const portfolioContent = {
         html: `
             <div class="profile-summary">
                 <div class="profile-photo">
-                    <!-- 실제 프로필 사진이 준비되면 images/profile.jpg를 교체해 주세요. -->
-                    <img src="images/profile.jpg" alt="テスト用の猫の写真">
+                    <img src="images/profile.jpg" alt="キム テヒョンのプロフィール写真">
                 </div>
                 <p class="modal-intro">
                     <strong>学んだ技術を仕事に活かし、専門性を磨いてきたキム テヒョンです。</strong>
