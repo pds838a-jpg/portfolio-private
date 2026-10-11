@@ -1,13 +1,20 @@
-// 이 부분의 문장을 수정하면 각 창의 내용이 바뀝니다.
-function getAgeInKorea() {
-    const parts = new Intl.DateTimeFormat("en-US", {
-        timeZone: "Asia/Seoul", year: "numeric", month: "numeric", day: "numeric"
-    }).formatToParts(new Date());
-    const values = Object.fromEntries(parts.map(({ type, value }) => [type, Number(value)]));
-    return values.year - 1998 - (values.month < 11 || (values.month === 11 && values.day < 5) ? 1 : 0);
+// 생년월일(1998년 11월 5일)을 기준으로 만 나이를 계산합니다.
+function getAge() {
+    const today = new Date();
+    let age = today.getFullYear() - 1998;
+    const birthday = new Date(today.getFullYear(), 10, 5); // 월은 0부터 시작하므로 10은 11월입니다.
+
+    if (today < birthday) {
+        age = age - 1;
+    }
+
+    return age;
 }
 
+// PROFILE, SKILLS, PROJECTS, CAREER 메뉴에서 열 상세 콘텐츠입니다.
+// 각 항목의 html은 공통 팝업 안에 표시되고 lang은 기본 언어를 뜻합니다.
 const portfolioContent = {
+    // PROFILE: 소개, 인적 사항, 학력, 취미와 사진
     profile: {
         title: "プロフィール",
         lang: "ja",
@@ -171,6 +178,7 @@ const portfolioContent = {
         `
     },
 
+    // SKILLS: 사용해 본 기술과 현재 학습 중인 기술
     skills: {
         title: "SKILLS",
         html: `
@@ -199,6 +207,7 @@ const portfolioContent = {
         `
     },
 
+    // PROJECTS: 진행 중이거나 소개할 프로젝트
     projects: {
         title: "PROJECTS",
         html: `
@@ -213,6 +222,7 @@ const portfolioContent = {
         `
     },
 
+    // CAREER: 이전 경력과 현재 준비 과정
     career: {
         title: "経歴と現在の取り組み",
         lang: "ja",
@@ -301,307 +311,366 @@ const portfolioContent = {
     }
 };
 
+// 화면에서 사용할 HTML 요소를 변수에 저장합니다.
 const modal = document.getElementById("portfolio-modal");
 const modalPanel = modal.querySelector(".modal-panel");
-const modalScroll = modal.querySelector(".modal-scroll");
 const modalTitle = document.getElementById("modal-title");
 const modalBody = document.getElementById("modal-body");
 const closeButton = modal.querySelector(".modal-close");
 const photoViewer = document.getElementById("photo-viewer");
 const viewerImage = photoViewer.querySelector(".photo-viewer-image");
 const viewerCaption = photoViewer.querySelector(".photo-viewer-caption");
-let currentLanguage = "ja";
-try {
-    const savedLanguage = localStorage.getItem("portfolio-language");
-    if (Object.hasOwn(localeUI, savedLanguage)) currentLanguage = savedLanguage;
-} catch { /* 저장소를 사용할 수 없는 환경에서도 언어 전환은 동작합니다. */ }
-
-function translateText(value) {
-    if (currentLanguage === "ja") return value;
-    const normalized = value.trim().replace(/\s+/g, " ");
-    return contentTranslations[normalized]?.[currentLanguage] ?? value;
-}
-
-const furiganaReadings = {
-    "忠清北道": "チュンチョンブクト",
-    "忠州市": "チュンジュし",
-    "陰城郡庁": "ウムソンぐんちょう",
-    "忠州高等学校": "チュンジュこうとうがっこう",
-    "忠北大学校": "チュンブクだいがっこう",
-    "土木工学部": "どぼくこうがくぶ",
-    "土木技師": "どぼくぎし",
-    "韓国産業人力公団": "かんこくさんぎょうじんりょくこうだん",
-    "専門性": "せんもんせい",
-    "習得": "しゅうとく",
-    "培った": "つちかった",
-    "任用": "にんよう",
-    "実施設計": "じっしせっけい",
-    "設計業務委託": "せっけいぎょうむいたく",
-    "維持補修": "いじほしゅう",
-    "老朽管": "ろうきゅうかん",
-    "竣工": "しゅんこう",
-    "数量計算書": "すうりょうけいさんしょ",
-    "工事費内訳書": "こうじひうちわけしょ",
-    "整合性": "せいごうせい",
-    "適合性": "てきごうせい",
-    "協議": "きょうぎ",
-    "協働": "きょうどう",
-    "河川": "かせん",
-    "水資源部": "みずしげんぶ",
-    "実態調査": "じったいちょうさ",
-    "責任感": "せきにんかん",
-    "試行錯誤": "しこうさくご",
-    "根拠": "こんきょ",
-    "磨いて": "みがいて",
-    "磨きたい": "みがきたい",
-    "磨きました": "みがきました"
-};
-const furiganaPattern = new RegExp(Object.keys(furiganaReadings).sort((a, b) => b.length - a.length).join("|"), "g");
-
-function removeFurigana(root) {
-    root.querySelectorAll("ruby[data-furigana]").forEach((ruby) => {
-        ruby.replaceWith(document.createTextNode(ruby.firstChild.textContent));
-    });
-    root.normalize();
-}
-
-function addFurigana(root) {
-    if (currentLanguage !== "ja") return;
-    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-    const nodes = [];
-    let node;
-    while ((node = walker.nextNode())) {
-        if (!node.parentElement.closest("ruby, script, style")) nodes.push(node);
-    }
-    nodes.forEach((textNode) => {
-        const text = textNode.textContent;
-        const matches = [...text.matchAll(furiganaPattern)];
-        if (!matches.length) return;
-        const fragment = document.createDocumentFragment();
-        let end = 0;
-        matches.forEach((match) => {
-            fragment.append(document.createTextNode(text.slice(end, match.index)));
-            const ruby = document.createElement("ruby");
-            ruby.dataset.furigana = "true";
-            ruby.append(document.createTextNode(match[0]));
-            const reading = document.createElement("rt");
-            reading.textContent = furiganaReadings[match[0]];
-            ruby.append(reading);
-            fragment.append(ruby);
-            end = match.index + match[0].length;
-        });
-        fragment.append(document.createTextNode(text.slice(end)));
-        textNode.replaceWith(fragment);
-    });
-}
-
-function renderModalContent(section) {
-    const content = portfolioContent[section];
-    if (!content) return;
-    modalTitle.textContent = localeUI[currentLanguage].titles[section];
-    modalPanel.lang = currentLanguage;
-    modalPanel.dataset.section = section;
-    modalBody.innerHTML = content.html;
-    const walker = document.createTreeWalker(modalBody, NodeFilter.SHOW_TEXT);
-    let node;
-    while ((node = walker.nextNode())) {
-        if (node.textContent.trim()) node.textContent = translateText(node.textContent);
-    }
-    modalBody.querySelectorAll("img[alt]").forEach((photo) => {
-        photo.alt = translateText(photo.alt);
-    });
-    const ageLabel = modalBody.querySelector("[data-profile-age]");
-    if (ageLabel) ageLabel.textContent = getAgeInKorea();
-    preparePhotoButtons();
-    addFurigana(modalBody);
-}
-
-function setLanguage(language) {
-    if (!Object.hasOwn(localeUI, language)) return;
-    removeFurigana(document.querySelector(".business-card"));
-    currentLanguage = language;
-    const ui = localeUI[language];
-    document.querySelector(".preview-name").textContent = ui.name;
-    document.querySelector(".preview-role").textContent = ui.role;
-    document.querySelector(".card-open-hint").textContent = cardUI[language].open;
-    document.querySelector(".card-preview-button").setAttribute("aria-label", cardUI[language].expand);
-    document.querySelector(".card-collapse").textContent = cardUI[language].collapse;
-    document.documentElement.lang = language;
-    document.title = ui.pageTitle;
-    document.querySelectorAll(".identity, .intro-copy, .menu-caption, .contact-note").forEach((element) => {
-        element.lang = language;
-    });
-    document.querySelector(".language-switcher").setAttribute("aria-label", ui.language);
-    document.querySelectorAll("[data-language]").forEach((button) => {
-        button.setAttribute("aria-pressed", String(button.dataset.language === language));
-    });
-    document.querySelector(".identity").setAttribute("aria-label", ui.identity);
-    document.querySelector(".contents-menu").setAttribute("aria-label", ui.menu);
-    document.querySelector(".intro-area").setAttribute("aria-label", ui.intro);
-    document.querySelector(".identity-caption").textContent = ui.hello;
-    const nameHeading = document.querySelector(".identity h1");
-    nameHeading.firstChild.textContent = ui.name;
-    document.querySelector(".identity-role").textContent = ui.role;
-    document.querySelector(".identity-description").innerHTML = ui.description;
-    document.querySelector(".learning-tag").textContent = ui.learning;
-    const headerLabel = document.querySelector(".header-label");
-    headerLabel.firstChild.textContent = ui.header + " ";
-    headerLabel.querySelector("span").textContent = ui.subheader;
-    document.querySelectorAll(".menu-box").forEach((button) => {
-        const section = button.dataset.section;
-        button.querySelector(".menu-title").textContent = ui.labels[section];
-        button.querySelector(".menu-caption").textContent = ui.captions[section];
-    });
-    document.querySelector(".eyebrow").textContent = ui.direction;
-    document.querySelector(".intro-title").innerHTML = ui.slogan;
-    document.querySelector(".intro-description").innerHTML = ui.introDescription;
-    document.querySelector(".contact-info h2").textContent = ui.contact;
-    document.querySelector(".contact-name").textContent = ui.connect;
-    document.querySelector(".contact-note").textContent = ui.note;
-    document.querySelectorAll('.contact-info a[target="_blank"]').forEach((link) => {
-        const site = link.textContent.replace("↗", "").trim();
-        link.setAttribute("aria-label", site + ui.newTab);
-    });
-    closeButton.setAttribute("aria-label", ui.close);
-    photoViewer.lang = language;
-    photoViewer.setAttribute("aria-label", ui.photoViewer);
-    photoViewer.querySelector(".photo-viewer-close").setAttribute("aria-label", ui.photoClose);
-    if (!modal.hidden) renderModalContent(modalPanel.dataset.section);
-    addFurigana(document.querySelector(".business-card"));
-    try { localStorage.setItem("portfolio-language", language); } catch { /* 선택은 현재 페이지에서 유지됩니다. */ }
-}
-
-document.querySelectorAll("[data-language]").forEach((button) => {
-    button.addEventListener("click", () => setLanguage(button.dataset.language));
-});
-
-function preparePhotoButtons() {
-    modalBody.querySelectorAll(".profile-photo img, .activity-photo img").forEach((photo) => {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "photo-expand";
-        const ui = localeUI[currentLanguage];
-        button.setAttribute("aria-label", `${photo.alt || ui.photo}${ui.expand}`);
-        button.setAttribute("aria-haspopup", "dialog");
-        photo.replaceWith(button);
-        button.append(photo);
-        button.addEventListener("click", () => {
-            viewerImage.src = photo.dataset.fullSrc || photo.currentSrc || photo.src;
-            viewerImage.alt = photo.alt;
-            viewerCaption.textContent = photo.closest("figure")?.querySelector("figcaption")?.textContent || photo.alt;
-            photoViewer.showModal();
-        });
-    });
-}
-
-photoViewer.querySelector(".photo-viewer-close").addEventListener("click", () => photoViewer.close());
-photoViewer.addEventListener("click", (event) => {
-    if (event.target !== photoViewer) return;
-    const bounds = photoViewer.getBoundingClientRect();
-    if (event.clientX < bounds.left || event.clientX > bounds.right ||
-        event.clientY < bounds.top || event.clientY > bounds.bottom) photoViewer.close();
-});
-photoViewer.addEventListener("close", () => {
-    viewerImage.removeAttribute("src");
-});
-
 const main = document.querySelector(".business-card");
 const cardPreview = document.querySelector(".card-preview");
 const previewButton = document.querySelector(".card-preview-button");
 const collapseButton = document.querySelector(".card-collapse");
+
+let currentLanguage = "ja";
 let lastFocusedButton = null;
 
+// 번역 데이터에서 현재 언어에 맞는 문장을 찾습니다.
+function translateText(text) {
+    const cleanText = text.trim().replace(/\s+/g, " ");
+
+    if (currentLanguage === "ja") {
+        return text;
+    }
+
+    if (contentTranslations[cleanText] !== undefined) {
+        return contentTranslations[cleanText];
+    }
+
+    return text;
+}
+
+// 요소 안에 있는 글자들을 선택한 언어로 바꿉니다.
+function translateElement(element) {
+    const childElements = element.querySelectorAll("*");
+
+    // 현재 요소에 바로 들어 있는 글자를 바꿉니다.
+    for (let i = 0; i < element.childNodes.length; i++) {
+        const node = element.childNodes[i];
+
+        if (node.nodeType === Node.TEXT_NODE) {
+            node.textContent = translateText(node.textContent);
+        }
+    }
+
+    // 안쪽에 포함된 요소들의 글자도 차례대로 바꿉니다.
+    for (let i = 0; i < childElements.length; i++) {
+        const childElement = childElements[i];
+
+        for (let j = 0; j < childElement.childNodes.length; j++) {
+            const node = childElement.childNodes[j];
+
+            if (node.nodeType === Node.TEXT_NODE) {
+                node.textContent = translateText(node.textContent);
+            }
+        }
+    }
+}
+
+// 선택한 메뉴의 제목과 내용을 팝업에 표시합니다.
+function showSection(sectionName) {
+    const section = portfolioContent[sectionName];
+
+    if (!section) {
+        return;
+    }
+
+    const pageText = localeUI[currentLanguage];
+
+    modalTitle.textContent = pageText.titles[sectionName];
+    modalPanel.lang = currentLanguage;
+    modalPanel.dataset.section = sectionName;
+    modalBody.innerHTML = section.html;
+
+    translateElement(modalBody);
+
+    // 사진의 대체 문구도 현재 언어로 바꿉니다.
+    const photos = modalBody.querySelectorAll("img[alt]");
+
+    for (let i = 0; i < photos.length; i++) {
+        photos[i].alt = translateText(photos[i].alt);
+    }
+
+    // 생년월일 문구에 현재 나이를 넣습니다.
+    const ageText = modalBody.querySelector("[data-profile-age]");
+
+    if (ageText) {
+        ageText.textContent = getAge();
+    }
+
+    preparePhotoButtons();
+}
+
+// 페이지의 글자와 버튼을 선택한 언어로 바꿉니다.
+function setLanguage(language) {
+    const pageText = localeUI[language];
+
+    if (!pageText) {
+        return;
+    }
+
+    currentLanguage = language;
+
+    document.documentElement.lang = language;
+    document.title = pageText.pageTitle;
+
+    document.querySelector(".preview-name").textContent = pageText.name;
+    document.querySelector(".preview-role").textContent = pageText.role;
+    document.querySelector(".card-open-hint").textContent = cardUI[language].open;
+    previewButton.setAttribute("aria-label", cardUI[language].expand);
+    collapseButton.textContent = cardUI[language].collapse;
+
+    document.querySelector(".identity-caption").textContent = pageText.hello;
+    document.querySelector(".identity h1").firstChild.textContent = pageText.name;
+    document.querySelector(".identity-role").textContent = pageText.role;
+    document.querySelector(".identity-description").innerHTML = pageText.description;
+    document.querySelector(".learning-tag").textContent = pageText.learning;
+
+    const headerLabel = document.querySelector(".header-label");
+    headerLabel.firstChild.textContent = pageText.header + " ";
+    headerLabel.querySelector("span").textContent = pageText.subheader;
+
+    // 네 개의 메뉴 제목과 설명을 바꿉니다.
+    const menuButtons = document.querySelectorAll(".menu-box");
+
+    for (let i = 0; i < menuButtons.length; i++) {
+        const sectionName = menuButtons[i].dataset.section;
+
+        menuButtons[i].querySelector(".menu-title").textContent =
+            pageText.labels[sectionName];
+        menuButtons[i].querySelector(".menu-caption").textContent =
+            pageText.captions[sectionName];
+    }
+
+    document.querySelector(".language-switcher").setAttribute("aria-label", pageText.language);
+    document.querySelector(".identity").setAttribute("aria-label", pageText.identity);
+    document.querySelector(".contents-menu").setAttribute("aria-label", pageText.menu);
+    document.querySelector(".intro-area").setAttribute("aria-label", pageText.intro);
+
+    document.querySelector(".eyebrow").textContent = pageText.direction;
+    document.querySelector(".intro-title").innerHTML = pageText.slogan;
+    document.querySelector(".intro-description").innerHTML = pageText.introDescription;
+    document.querySelector(".contact-info h2").textContent = pageText.contact;
+    document.querySelector(".contact-name").textContent = pageText.connect;
+    document.querySelector(".contact-note").textContent = pageText.note;
+
+    const translatedElements = document.querySelectorAll(
+        ".identity, .intro-copy, .menu-caption, .contact-note"
+    );
+
+    for (let i = 0; i < translatedElements.length; i++) {
+        translatedElements[i].lang = language;
+    }
+
+    const externalLinks = document.querySelectorAll('.contact-info a[target="_blank"]');
+
+    for (let i = 0; i < externalLinks.length; i++) {
+        const siteName = externalLinks[i].textContent.replace("↗", "").trim();
+        externalLinks[i].setAttribute("aria-label", siteName + pageText.newTab);
+    }
+
+    // 선택한 언어 버튼만 눌린 상태로 표시합니다.
+    const languageButtons = document.querySelectorAll("[data-language]");
+
+    for (let i = 0; i < languageButtons.length; i++) {
+        const isSelected = languageButtons[i].dataset.language === language;
+        languageButtons[i].setAttribute("aria-pressed", isSelected);
+    }
+
+    closeButton.setAttribute("aria-label", pageText.close);
+    photoViewer.lang = language;
+    photoViewer.setAttribute("aria-label", pageText.photoViewer);
+    photoViewer.querySelector(".photo-viewer-close")
+        .setAttribute("aria-label", pageText.photoClose);
+
+    // 팝업이 열려 있으면 그 안의 글자도 바로 다시 표시합니다.
+    if (!modal.hidden) {
+        showSection(modalPanel.dataset.section);
+    }
+}
+
+// 각 언어 버튼을 누르면 페이지 언어를 바꿉니다.
+const languageButtons = document.querySelectorAll("[data-language]");
+
+for (let i = 0; i < languageButtons.length; i++) {
+    languageButtons[i].addEventListener("click", function () {
+        setLanguage(languageButtons[i].dataset.language);
+    });
+}
+
+// 상세 내용의 사진을 누르면 크게 볼 수 있게 합니다.
+function preparePhotoButtons() {
+    const photos = modalBody.querySelectorAll(".profile-photo img, .activity-photo img");
+
+    for (let i = 0; i < photos.length; i++) {
+        const photo = photos[i];
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "photo-expand";
+        button.setAttribute("aria-haspopup", "dialog");
+        button.setAttribute(
+            "aria-label",
+            photo.alt + localeUI[currentLanguage].expand
+        );
+
+        photo.parentNode.insertBefore(button, photo);
+        button.appendChild(photo);
+
+        button.addEventListener("click", function () {
+            viewerImage.src = photo.src;
+            viewerImage.alt = photo.alt;
+
+            const figure = photo.closest("figure");
+
+            if (figure) {
+                const caption = figure.querySelector("figcaption");
+
+                if (caption) {
+                    viewerCaption.textContent = caption.textContent;
+                } else {
+                    viewerCaption.textContent = photo.alt;
+                }
+            } else {
+                viewerCaption.textContent = photo.alt;
+            }
+
+            photoViewer.showModal();
+        });
+    }
+}
+
+// 사진 확대 창을 닫습니다.
+photoViewer.querySelector(".photo-viewer-close").addEventListener("click", function () {
+    photoViewer.close();
+});
+
+// 사진 창 바깥쪽을 누르면 창을 닫습니다.
+photoViewer.addEventListener("click", function (event) {
+    if (event.target !== photoViewer) {
+        return;
+    }
+
+    const dialogBounds = photoViewer.getBoundingClientRect();
+    const clickedOutsideDialog =
+        event.clientX < dialogBounds.left ||
+        event.clientX > dialogBounds.right ||
+        event.clientY < dialogBounds.top ||
+        event.clientY > dialogBounds.bottom;
+
+    if (clickedOutsideDialog) {
+        photoViewer.close();
+    }
+});
+
+// 사진 창을 닫으면 이전 사진 주소를 지웁니다.
+photoViewer.addEventListener("close", function () {
+    viewerImage.removeAttribute("src");
+});
+
+// 작은 명함을 누르면 전체 포트폴리오를 펼칩니다.
 function expandCard() {
     main.hidden = false;
     main.inert = false;
     cardPreview.hidden = true;
     collapseButton.hidden = false;
+
     document.body.classList.remove("card-collapsed");
     document.body.classList.add("card-expanded");
     previewButton.setAttribute("aria-expanded", "true");
-    main.querySelector("[data-language]").focus({preventScroll:true});
+
+    document.querySelector(".language-switcher button").focus();
 }
 
+// 접기 버튼을 누르면 작은 명함으로 돌아갑니다.
 function collapseCard() {
-    if (!modal.hidden || photoViewer.open) return;
+    if (!modal.hidden || photoViewer.open) {
+        return;
+    }
+
     main.hidden = true;
     main.inert = true;
     cardPreview.hidden = false;
     collapseButton.hidden = true;
+
     document.body.classList.remove("card-expanded");
     document.body.classList.add("card-collapsed");
     previewButton.setAttribute("aria-expanded", "false");
-    previewButton.focus({preventScroll:true});
+    previewButton.focus();
 }
 
 previewButton.addEventListener("click", expandCard);
 collapseButton.addEventListener("click", collapseCard);
-document.body.addEventListener("click", (event) => {
-    if (event.target === document.body && !main.hidden) collapseCard();
-});
 
-document.querySelectorAll(".menu-box").forEach((button) => {
-    button.addEventListener("click", () => {
-        if (!portfolioContent[button.dataset.section]) return;
+// 네 개 메뉴 중 하나를 누르면 해당 내용을 팝업에 엽니다.
+const menuButtons = document.querySelectorAll(".menu-box");
 
-        lastFocusedButton = button;
-        renderModalContent(button.dataset.section);
+for (let i = 0; i < menuButtons.length; i++) {
+    menuButtons[i].addEventListener("click", function () {
+        const sectionName = menuButtons[i].dataset.section;
+
+        lastFocusedButton = menuButtons[i];
+        showSection(sectionName);
 
         modal.hidden = false;
         document.body.classList.add("modal-open");
         main.inert = true;
-        modalScroll.scrollTop = 0;
-        closeButton.focus({ preventScroll: true });
+        modal.querySelector(".modal-scroll").scrollTop = 0;
+        closeButton.focus();
     });
-});
+}
 
+// 팝업을 닫고 원래 선택했던 메뉴로 돌아갑니다.
 function closeModal() {
     modal.hidden = true;
     document.body.classList.remove("modal-open");
     main.inert = false;
-    lastFocusedButton?.focus({ preventScroll: true });
+
+    if (lastFocusedButton) {
+        lastFocusedButton.focus();
+    }
 }
 
 closeButton.addEventListener("click", closeModal);
 modal.querySelector(".modal-backdrop").addEventListener("click", closeModal);
+
+// 페이지를 처음 열 때 기본 언어인 일본어를 적용합니다.
 setLanguage(currentLanguage);
 
-document.addEventListener("keydown", (event) => {
-    if (photoViewer.open) return;
-    if (modal.hidden) {
-        if (event.key === "Escape" && !main.hidden) {
-            event.preventDefault();
-            collapseCard();
-        }
+// Escape 키를 누르면 열린 창이나 포트폴리오를 닫습니다.
+document.addEventListener("keydown", function (event) {
+    if (photoViewer.open) {
         return;
     }
 
-    if (event.key === "Escape") {
-        event.preventDefault();
+    if (event.key === "Escape" && !modal.hidden) {
         closeModal();
-        return;
+    } else if (event.key === "Escape" && !main.hidden) {
+        collapseCard();
     }
 
-    // Tab 키를 눌러도 키보드 포커스가 열린 창 안에 머물도록 합니다.
-    if (event.key === "Tab") {
-        const focusable = [...modalPanel.querySelectorAll('button, a[href], input, textarea, select, [tabindex]')];
-        const available = focusable.filter((element) =>
-            !element.disabled && element.tabIndex >= 0 && element.getClientRects().length > 0
-        );
-        const first = available[0];
-        if (!first) {
-            event.preventDefault();
-            modalPanel.focus();
-            return;
-        }
-        const last = available[available.length - 1];
+    // Tab 키를 누를 때 키보드 초점이 팝업 안에 머물게 합니다.
+    if (!modal.hidden && event.key === "Tab") {
+        const focusableElements = modalPanel.querySelectorAll("button, a[href]");
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
 
-        if (event.shiftKey && document.activeElement === first) {
+        if (event.shiftKey && document.activeElement === firstElement) {
             event.preventDefault();
-            last.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
+            lastElement.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
             event.preventDefault();
-            first.focus();
+            firstElement.focus();
         }
+    }
+});
+
+// 화면 바깥을 클릭하면 펼쳐진 포트폴리오를 접습니다.
+document.body.addEventListener("click", function (event) {
+    if (event.target === document.body && !main.hidden) {
+        collapseCard();
     }
 });

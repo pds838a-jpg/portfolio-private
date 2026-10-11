@@ -4,16 +4,17 @@
     box-sizing: border-box;
 }
 
+/* ?�상 변?��? 공통 기본 ?��???*/
 :root {
-    --green: rgb(3 36 7);
-    --ivory: rgb(248 247 238);
-    --soft-green: rgb(224 233 216);
+    --navy: rgb(25 53 91);
+    --paper: rgb(239 246 255);
+    --soft-blue: rgb(220 233 250);
 }
 
 body {
     font-family: "Noto Sans JP", "Noto Sans KR", Arial, sans-serif;
-    color: var(--green);
-    background: var(--ivory);
+    color: var(--navy);
+    background: var(--paper);
 }
 
 body.modal-open {
@@ -24,12 +25,12 @@ button {
     font: inherit;
 }
 
-/* 전체 명함 */
+/* ?�체 명함 */
 .business-card {
     position: relative;
     min-height: 100vh;
     padding: 54px 7% 75px;
-    background: var(--ivory);
+    background: var(--paper);
 }
 
 .left-bar {
@@ -38,7 +39,7 @@ button {
     left: 0;
     width: 15px;
     height: 150px;
-    background: var(--green);
+    background: var(--navy);
 }
 
 .header {
@@ -48,7 +49,7 @@ button {
 .top-line {
     height: 3px;
     margin-bottom: 9px;
-    background: var(--green);
+    background: var(--navy);
 }
 
 .header h1 {
@@ -56,7 +57,7 @@ button {
     font-weight: 600;
 }
 
-/* 메뉴와 오른쪽 소개 */
+/* 메뉴?� ?�른�??�개 */
 .main-layout {
     width: 100%;
     min-height: max(470px, calc(100vh - 180px));
@@ -82,9 +83,9 @@ button {
     display: flex;
     align-items: flex-start;
     text-align: left;
-    color: var(--green);
-    background: rgb(52 85 62 / 6%);
-    border: 2px solid var(--green);
+    color: var(--navy);
+    background: rgb(67 101 148 / 6%);
+    border: 2px solid var(--navy);
     border-radius: 16px;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -93,12 +94,12 @@ button {
 .menu-box:hover,
 .menu-box:focus-visible {
     transform: scale(1.035);
-    box-shadow: 0 10px 22px rgb(3 36 7 / 13%);
+    box-shadow: 0 10px 22px rgb(24 48 82 / 13%);
 }
 
 .menu-box:focus-visible,
 .modal-close:focus-visible {
-    outline: 3px solid #7a9c7d;
+    outline: 3px solid #6d91bf;
     outline-offset: 3px;
 }
 
@@ -119,7 +120,7 @@ button {
     height: 30px;
     display: grid;
     place-items: center;
-    border: 1px solid rgb(3 36 7 / 22%);
+    border: 1px solid rgb(24 48 82 / 22%);
     border-radius: 50%;
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
@@ -135,12 +136,12 @@ button {
 
 .menu-box:hover .menu-arrow,
 .menu-box:focus-visible .menu-arrow {
-    background: var(--green);
-    border-color: var(--green);
-    color: var(--ivory);
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--paper);
 }
 
-/* 오른쪽 소개 */
+/* ?�른�??�개 */
 .intro-area {
     position: absolute;
     z-index: 1;
@@ -152,7 +153,7 @@ button {
     flex-direction: column;
     justify-content: space-between;
     gap: 35px;
-    color: var(--ivory);
+    color: var(--paper);
 }
 
 .eyebrow,
@@ -201,10 +202,10 @@ button {
     left: 0;
     width: 100%;
     height: 25px;
-    background: linear-gradient(to right, #d2cbb8 64%, var(--green) 64%);
+    background: linear-gradient(to right, #d7e4f5 64%, var(--navy) 64%);
 }
 
-/* 팝업 창 */
+/* ?�업 �?*/
 .modal[hidden] {
     display: none;
 }
@@ -221,7 +222,7 @@ button {
 .modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgb(0 20 4 / 58%);
+    background: rgb(13 30 53 / 58%);
 }
 
 .modal-panel {
@@ -231,7 +232,7 @@ button {
     max-height: calc(100dvh - 48px);
     overflow: hidden;
     padding: 0;
-    background: var(--ivory);
+    background: var(--paper);
     border-radius: 18px;
     box-shadow: 0 24px 70px rgb(0 0 0 / 25%);
 }
@@ -243,7 +244,7 @@ button {
     overscroll-behavior: contain;
     padding: 40px 72px 48px 48px;
     scrollbar-width: thin;
-    scrollbar-color: rgb(3 36 7 / 40%) transparent;
+    scrollbar-color: rgb(24 48 82 / 40%) transparent;
 }
 
 .modal-scroll::-webkit-scrollbar {
@@ -257,16 +258,16 @@ button {
 }
 
 .modal-scroll::-webkit-scrollbar-thumb {
-    background: rgb(3 36 7 / 40%);
-    border: 2px solid var(--ivory);
+    background: rgb(24 48 82 / 40%);
+    border: 2px solid var(--paper);
     border-radius: 999px;
 }
 
 .modal-scroll::-webkit-scrollbar-thumb:hover {
-    background: rgb(3 36 7 / 65%);
+    background: rgb(24 48 82 / 65%);
 }
 
-/* Chromium에서는 아래 스타일로 손잡이의 둥근 모서리를 적용합니다. */
+/* Chromium?�서???�래 ?��??�로 ?�잡?�의 ?�근 모서리�? ?�용?�니?? */
 @supports selector(::-webkit-scrollbar) {
     .modal-scroll {
         scrollbar-width: auto;
@@ -278,7 +279,7 @@ button {
     width: 100%;
     height: 3px;
     margin-bottom: 26px;
-    background: var(--green);
+    background: var(--navy);
 }
 
 .modal-header {
@@ -287,8 +288,8 @@ button {
     justify-content: space-between;
     gap: 20px;
     padding-bottom: 22px;
-    background: var(--ivory);
-    border-bottom: 1px solid rgb(3 36 7 / 20%);
+    background: var(--paper);
+    border-bottom: 1px solid rgb(24 48 82 / 20%);
 }
 
 .modal-header h2 {
@@ -305,9 +306,9 @@ button {
     height: 36px;
     flex-shrink: 0;
     border: 0;
-    background: var(--ivory);
+    background: var(--paper);
     border-radius: 50%;
-    color: var(--green);
+    color: var(--navy);
     font-size: 32px;
     line-height: 1;
     cursor: pointer;
@@ -346,12 +347,12 @@ button {
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 1px;
-    color: rgb(3 36 7 / 65%);
+    color: rgb(24 48 82 / 65%);
 }
 
 .detail-card .photo-note {
     font-size: 13px;
-    color: rgb(3 36 7 / 65%);
+    color: rgb(24 48 82 / 65%);
 }
 
 .activity-title {
@@ -359,6 +360,7 @@ button {
     font-size: 16px;
 }
 
+/* ?�로???�업??기본 ?�보, ?�력, 경력???�기 ?�게 ?�렬?�니?? */
 .profile-info > div {
     display: grid;
     grid-template-columns: 80px minmax(0, 1fr);
@@ -378,7 +380,7 @@ button {
 .profile-education-summary {
     margin-top: 22px;
     padding-top: 18px;
-    border-top: 1px solid rgb(3 36 7 / 15%);
+    border-top: 1px solid rgb(24 48 82 / 15%);
 }
 
 .profile-career-summary h4,
@@ -418,7 +420,7 @@ button {
     margin-top: 24px;
     padding: 16px 18px;
     border-radius: 10px;
-    background: rgb(52 85 62 / 6%);
+    background: rgb(67 101 148 / 6%);
 }
 
 @media (max-width:800px) {
@@ -441,7 +443,7 @@ button {
 .summary-period {
     font-size: 12px;
     font-weight: 500;
-    color: rgb(3 36 7 / 65%);
+    color: rgb(24 48 82 / 65%);
     letter-spacing: .5px;
     margin-bottom: 2px;
 }
@@ -465,7 +467,7 @@ button {
 
 .education-item + .education-item {
     padding-top: 16px;
-    border-top: 1px solid rgb(3 36 7 / 15%);
+    border-top: 1px solid rgb(24 48 82 / 15%);
 }
 
 .education-item h4 {
@@ -473,6 +475,7 @@ button {
     margin-bottom: 4px;
 }
 
+/* ?�로???�진�??�개 문장 */
 .profile-summary {
     display: flex;
     align-items: center;
@@ -489,9 +492,9 @@ button {
     aspect-ratio: 3 / 4;
     flex-shrink: 0;
     overflow: hidden;
-    border: 1px solid rgb(3 36 7 / 20%);
+    border: 1px solid rgb(24 48 82 / 20%);
     border-radius: 12px;
-    background: rgb(52 85 62 / 6%);
+    background: rgb(67 101 148 / 6%);
 }
 
 .profile-photo img {
@@ -508,7 +511,7 @@ button {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    color: rgb(3 36 7 / 65%);
+    color: rgb(24 48 82 / 65%);
 }
 
 .profile-photo-placeholder svg {
@@ -541,10 +544,11 @@ button {
     }
 }
 
+/* ?�세 ?�업 ?�의 카드??콘텐츠�? 취�? ?�진 갤러�?*/
 .detail-card {
     padding: 20px;
     margin-top: 14px;
-    border: 1px solid rgb(3 36 7 / 18%);
+    border: 1px solid rgb(24 48 82 / 18%);
     border-radius: 12px;
     background: rgb(255 255 255 / 55%);
 }
@@ -566,9 +570,9 @@ button {
     place-items: center;
     aspect-ratio: 4 / 3;
     overflow: hidden;
-    border: 1px solid rgb(3 36 7 / 20%);
+    border: 1px solid rgb(24 48 82 / 20%);
     border-radius: 10px;
-    background: rgb(52 85 62 / 6%);
+    background: rgb(67 101 148 / 6%);
 }
 
 .activity-photo img {
@@ -579,7 +583,7 @@ button {
 }
 
 .activity-placeholder {
-    color: rgb(3 36 7 / 65%);
+    color: rgb(24 48 82 / 65%);
     font-size: 13px;
 }
 
@@ -601,10 +605,11 @@ button {
 }
 
 .photo-expand:focus-visible {
-    outline: 3px solid #7a9c7d;
+    outline: 3px solid #6d91bf;
     outline-offset: -4px;
 }
 
+/* ?�진???�릭?�을 ???�면 ?�에 ?�우???��? 보기 �?*/
 .photo-viewer {
     margin: auto;
     width: fit-content;
@@ -613,13 +618,13 @@ button {
     padding: 52px 16px 16px;
     border: 0;
     border-radius: 16px;
-    background: var(--ivory);
-    color: var(--green);
+    background: var(--paper);
+    color: var(--navy);
     box-shadow: 0 24px 70px rgb(0 0 0 / 30%);
 }
 
 .photo-viewer::backdrop {
-    background: rgb(0 20 4 / 80%);
+    background: rgb(13 30 53 / 80%);
 }
 
 .photo-viewer-image {
@@ -641,13 +646,13 @@ button {
     border: 0;
     border-radius: 50%;
     background: transparent;
-    color: var(--green);
+    color: var(--navy);
     font-size: 30px;
     cursor: pointer;
 }
 
 .photo-viewer-close:focus-visible {
-    outline: 2px solid #7a9c7d;
+    outline: 2px solid #6d91bf;
     outline-offset: -4px;
 }
 
@@ -678,6 +683,7 @@ button {
     padding-left: 20px;
 }
 
+/* 기술 ?�그?� 메뉴 그림??공통 ?�현 */
 .tag-list {
     display: flex;
     flex-wrap: wrap;
@@ -687,19 +693,20 @@ button {
 
 .tag {
     padding: 5px 10px;
-    border: 1px solid rgb(3 36 7 / 35%);
+    border: 1px solid rgb(24 48 82 / 35%);
     border-radius: 999px;
     font-size: 12px;
 }
 
 
-/* 오른쪽 배경 */
+/* ?�른�?배경 */
+/* ?�트?�리??배경 ?�식, 메뉴 SVG 그림, ?��??�는 ?�니메이??*/
 .business-card::before {
     content: "";
     position: absolute;
     inset: 0 0 0 auto;
     width: 36%;
-    background: var(--green);
+    background: var(--navy);
 }
 
 /* 카드 배경 그림 */
@@ -709,7 +716,7 @@ button {
     bottom: 10px;
     width: clamp(90px, 9vw, 145px);
     height: auto;
-    stroke: var(--green);
+    stroke: var(--navy);
     stroke-width: 2.5;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -724,12 +731,12 @@ button {
     opacity: 0.28;
 }
 
-/* 배경이 서서히 나타나는 효과 */
+/* 배경???�서???��??�는 ?�과 */
 .modal:not([hidden]) .modal-backdrop {
     animation: backdrop-in 0.25s ease-out both;
 }
 
-/* 창이 살짝 올라오며 나타나는 효과 */
+/* 창이 ?�짝 ?�라?�며 ?��??�는 ?�과 */
 .modal:not([hidden]) .modal-panel {
     animation: modal-in 0.3s ease-out both;
 }
@@ -754,123 +761,430 @@ button {
     }
 }
 
-/* 기기에서 애니메이션 줄이기를 설정한 경우 */
+/* 기기?�서 ?�니메이??줄이기�? ?�정??경우 */
 @media (prefers-reduced-motion: reduce) {
     .modal:not([hidden]) .modal-backdrop,
     .modal:not([hidden]) .modal-panel {
         animation: none;
     }
 }
-/* 명함의 이름과 정보 계층 */
-.business-card { padding: 42px 7% 65px; }
-.header { width: 57%; }
-.header-label { display:flex; justify-content:space-between; gap:16px; font-size:11px; font-weight:700; letter-spacing:2px; margin-top:14px; }
-.header-label span { font-weight:400; letter-spacing:1px; }
-.main-layout { min-height:calc(100vh - 125px); grid-template-columns:minmax(0, 1.7fr) minmax(280px, 1fr); align-content:center; row-gap:32px; padding:40px 0; }
-.identity { grid-column:1; }
-.identity-caption { font-size:14px; margin-bottom:12px; }
-.identity h1 { font-size:clamp(32px, 3.8vw, 56px); line-height:1.2; letter-spacing:-2px; }
-.identity h1 span { display:block; margin-top:12px; font-size:12px; font-weight:400; letter-spacing:4px; }
-.identity-role { margin-top:24px; font-size:18px; font-weight:700; }
-.identity-description { margin-top:12px; font-size:14px; line-height:1.9; }
-.identity-tags { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:20px; }
-.identity-tags span { padding:5px 10px; border:1px solid rgb(3 36 7 / 22%); border-radius:4px; font-size:11px; }
-.identity-tags .learning-tag { border:0; font-size:9px; letter-spacing:1px; }
-.contents-menu { grid-column:1; }
-.menu-box { min-height:155px; flex-direction:column; padding:18px; border-width:1px; border-radius:10px; }
-.menu-title { font-size:18px; }
-.menu-caption { position:relative; z-index:1; margin-top:7px; font-size:11px; }
-.menu-art { width:82px; right:14px; bottom:8px; }
-.project-art { position:absolute; bottom:29px; right:18px; width:90px; height:auto; stroke:var(--green); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; opacity:.16; pointer-events:none; transition:transform .25s ease, opacity .25s ease; }
-.menu-box:hover .project-art, .menu-box:focus-visible .project-art { transform:scale(1.08) rotate(-3deg); opacity:.28; }
-.project-label { margin-top:auto; padding-top:40px; font-size:10px; position:relative; z-index:1; }
-.intro-area { top:145px; bottom:75px; }
-.contact-info a { color:inherit; text-decoration:none; overflow-wrap:anywhere; }
-.contact-info a:hover { text-decoration:underline; text-underline-offset:4px; }
-.contact-info a:focus-visible { outline:2px solid currentColor; outline-offset:4px; }
-.contact-info .contact-note { margin-top:17px; font-size:11px; opacity:.65; }
+/* 명함???�름�??�보 계층 */
+/* 명함???�면???�름, 메뉴, ?�개 ?�역 기본 배치 */
+.business-card {
+    padding: 42px 7% 65px;
+}
+.header {
+    width: 57%;
+}
+.header-label {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-top: 14px;
+}
+.header-label span {
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+.main-layout {
+    min-height: calc(100vh - 125px);
+    grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+    align-content: center;
+    row-gap: 32px;
+    padding: 40px 0;
+}
+.identity {
+    grid-column: 1;
+}
+.identity-caption {
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+.identity h1 {
+    font-size: clamp(32px, 3.8vw, 56px);
+    line-height: 1.2;
+    letter-spacing: -2px;
+}
+.identity h1 span {
+    display: block;
+    margin-top: 12px;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 4px;
+}
+.identity-role {
+    margin-top: 24px;
+    font-size: 18px;
+    font-weight: 700;
+}
+.identity-description {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.9;
+}
+.identity-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+.identity-tags span {
+    padding: 5px 10px;
+    border: 1px solid rgb(24 48 82 / 22%);
+    border-radius: 4px;
+    font-size: 11px;
+}
+.identity-tags .learning-tag {
+    border: 0;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+.contents-menu {
+    grid-column: 1;
+}
+.menu-box {
+    min-height: 155px;
+    flex-direction: column;
+    padding: 18px;
+    border-width: 1px;
+    border-radius: 10px;
+}
+.menu-title {
+    font-size: 18px;
+}
+.menu-caption {
+    position: relative;
+    z-index: 1;
+    margin-top: 7px;
+    font-size: 11px;
+}
+.menu-art {
+    width: 82px;
+    right: 14px;
+    bottom: 8px;
+}
+.project-art {
+    position: absolute;
+    bottom: 29px;
+    right: 18px;
+    width: 90px;
+    height: auto;
+    stroke: var(--navy);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: .16;
+    pointer-events: none;
+    transition: transform .25s ease, opacity .25s ease;
+}
+.menu-box:hover .project-art, .menu-box:focus-visible .project-art {
+    transform: scale(1.08) rotate(-3deg);
+    opacity: .28;
+}
+.project-label {
+    margin-top: auto;
+    padding-top: 40px;
+    font-size: 10px;
+    position: relative;
+    z-index: 1;
+}
+.intro-area {
+    top: 145px;
+    bottom: 75px;
+}
+.contact-info a {
+    color: inherit;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+.contact-info a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+.contact-info a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+}
+.contact-info .contact-note {
+    margin-top: 17px;
+    font-size: 11px;
+    opacity: .65;
+}
+/* ?�블릿과 ?��? ?�면?�서???�개 ?�역�?메뉴�??�로�?배치?�니?? */
 @media (max-width:900px) {
-    .business-card { padding:32px 30px 25px; }
-    .business-card::before { display:none; }
-    .bottom-bar { background:var(--green); }
-    .header { width:100%; }
-    .main-layout { min-height:auto; grid-template-columns:1fr; padding:40px 0 0; gap:32px; }
-    .identity h1 { font-size:46px; }
-    .intro-area { position:static; width:auto; margin:8px -30px 0; padding:36px 30px 40px; background:var(--green); flex-direction:row; align-items:flex-end; gap:30px; }
-    .intro-title { font-size:34px; }
-    .contact-info { flex-shrink:0; }
+    .business-card {
+        padding: 32px 30px 25px;
+    }
+    .business-card::before {
+        display: none;
+    }
+    .bottom-bar {
+        background: var(--navy);
+    }
+    .header {
+        width: 100%;
+    }
+    .main-layout {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        padding: 40px 0 0;
+        gap: 32px;
+    }
+    .identity h1 {
+        font-size: 46px;
+    }
+    .intro-area {
+        position: static;
+        width: auto;
+        margin: 8px -30px 0;
+        padding: 36px 30px 40px;
+        background: var(--navy);
+        flex-direction: row;
+        align-items: flex-end;
+        gap: 30px;
+    }
+    .intro-title {
+        font-size: 34px;
+    }
+    .contact-info {
+        flex-shrink: 0;
+    }
 }
 @media (max-width:600px) {
-    .business-card { padding:28px 20px 25px; }
-    .left-bar { width:7px; height:88px; }
-    .header-label { font-size:9px; letter-spacing:1px; }
-    .header-label span { font-size:8px; letter-spacing:0; }
-    .main-layout { padding-top:34px; gap:28px; }
-    .identity h1 { font-size:clamp(30px, 9vw, 44px); letter-spacing:-1px; }
-    .identity-role { font-size:16px; margin-top:20px; }
-    .identity-description { font-size:13px; }
-    .contents-menu { gap:12px; }
-    .menu-box { min-height:150px; padding:14px 12px; }
-    .menu-title { font-size:clamp(13px, 3.8vw, 18px); letter-spacing:.5px; }
-    .menu-arrow { top:15px; right:12px; }
-    .menu-caption { font-size:10px; }
-    .menu-art { width:70px; }
-    .project-art { width:68px; right:12px; bottom:31px; }
-    .project-label { font-size:9px; }
-    .intro-area { margin:4px -20px 0; padding:32px 24px 40px; flex-direction:column; align-items:stretch; gap:32px; }
-    .intro-title { font-size:32px; }
-    .intro-description { font-size:14px; }
-    .contact-info { padding-top:24px; border-top:1px solid rgb(255 255 255 / 25%); }
-    .modal { padding:12px; }
-    .modal-panel { max-height:calc(100vh - 24px); max-height:calc(100dvh - 24px); border-radius:14px; }
-    .modal-scroll { max-height:calc(100vh - 24px); max-height:calc(100dvh - 24px); padding:24px 66px 24px 20px; }
-    .modal-header h2 { font-size:24px; }
-    .modal-close { width:44px; height:44px; }
-    .detail-card { padding:16px; }
+    .business-card {
+        padding: 28px 20px 25px;
+    }
+    .left-bar {
+        width: 7px;
+        height: 88px;
+    }
+    .header-label {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+    .header-label span {
+        font-size: 8px;
+        letter-spacing: 0;
+    }
+    .main-layout {
+        padding-top: 34px;
+        gap: 28px;
+    }
+    .identity h1 {
+        font-size: clamp(30px, 9vw, 44px);
+        letter-spacing: -1px;
+    }
+    .identity-role {
+        font-size: 16px;
+        margin-top: 20px;
+    }
+    .identity-description {
+        font-size: 13px;
+    }
+    .contents-menu {
+        gap: 12px;
+    }
+    .menu-box {
+        min-height: 150px;
+        padding: 14px 12px;
+    }
+    .menu-title {
+        font-size: clamp(13px, 3.8vw, 18px);
+        letter-spacing: .5px;
+    }
+    .menu-arrow {
+        top: 15px;
+        right: 12px;
+    }
+    .menu-caption {
+        font-size: 10px;
+    }
+    .menu-art {
+        width: 70px;
+    }
+    .project-art {
+        width: 68px;
+        right: 12px;
+        bottom: 31px;
+    }
+    .project-label {
+        font-size: 9px;
+    }
+    .intro-area {
+        margin: 4px -20px 0;
+        padding: 32px 24px 40px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 32px;
+    }
+    .intro-title {
+        font-size: 32px;
+    }
+    .intro-description {
+        font-size: 14px;
+    }
+    .contact-info {
+        padding-top: 24px;
+        border-top: 1px solid rgb(255 255 255 / 25%);
+    }
+    .modal {
+        padding: 12px;
+    }
+    .modal-panel {
+        max-height: calc(100vh - 24px);
+        max-height: calc(100dvh - 24px);
+        border-radius: 14px;
+    }
+    .modal-scroll {
+        max-height: calc(100vh - 24px);
+        max-height: calc(100dvh - 24px);
+        padding: 24px 66px 24px 20px;
+    }
+    .modal-header h2 {
+        font-size: 24px;
+    }
+    .modal-close {
+        width: 44px;
+        height: 44px;
+    }
+    .detail-card {
+        padding: 16px;
+    }
 }
 @media (hover:none) {
-    .menu-box:hover, .menu-box:focus-visible, .menu-box:hover .menu-art, .menu-box:focus-visible .menu-art, .menu-box:hover .project-art, .menu-box:focus-visible .project-art { transform:none; }
+    .menu-box:hover, .menu-box:focus-visible, .menu-box:hover .menu-art, .menu-box:focus-visible .menu-art, .menu-box:hover .project-art, .menu-box:focus-visible .project-art {
+        transform: none;
+    }
 }
 @media (prefers-reduced-motion:reduce) {
-    .menu-box, .menu-art, .project-art, .menu-arrow { transition:none; }
-    .menu-box:hover, .menu-box:focus-visible, .menu-box:hover .menu-art, .menu-box:focus-visible .menu-art, .menu-box:hover .project-art, .menu-box:focus-visible .project-art { transform:none; }
+    .menu-box, .menu-art, .project-art, .menu-arrow {
+        transition: none;
+    }
+    .menu-box:hover, .menu-box:focus-visible, .menu-box:hover .menu-art, .menu-box:focus-visible .menu-art, .menu-box:hover .project-art, .menu-box:focus-visible .project-art {
+        transform: none;
+    }
 }
 
-/* 작은 설명도 편하게 읽을 수 있는 글자 크기 */
-.header-label { font-size:13px; letter-spacing:1px; line-height:1.6; flex-wrap:wrap; }
-.header-label span { font-weight:500; }
-.identity-caption { font-size:16px; }
-.identity h1 span { font-size:14px; font-weight:500; letter-spacing:3px; }
-.identity-role { font-size:20px; }
-.identity-description { font-size:16px; line-height:1.9; }
-.identity-tags { gap:10px; }
-.identity-tags span { font-size:13px; font-weight:500; padding:6px 12px; }
-.identity-tags .learning-tag { font-size:12px; }
-.menu-box { min-height:175px; padding:20px; }
-.menu-title { font-size:20px; }
-.menu-caption { font-size:14px; font-weight:500; line-height:1.6; margin-top:8px; }
-.project-label { font-size:13px; font-weight:500; line-height:1.6; }
-.project-art { bottom:38px; }
-.eyebrow, .contact-info h2 { font-size:14px; letter-spacing:2px; }
-.intro-description { font-size:16px; line-height:1.9; }
-.contact-info p { font-size:16px; line-height:1.9; }
-.contact-info .contact-note { font-size:13px; opacity:.85; }
-.detail-card p, .detail-card li { font-size:16px; }
-.tag { font-size:14px; }
+/* ?��? ?�명???�하�??�을 ???�는 글???�기 */
+.header-label {
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 1.6;
+    flex-wrap: wrap;
+}
+.header-label span {
+    font-weight: 500;
+}
+.identity-caption {
+    font-size: 16px;
+}
+.identity h1 span {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 3px;
+}
+.identity-role {
+    font-size: 20px;
+}
+.identity-description {
+    font-size: 16px;
+    line-height: 1.9;
+}
+.identity-tags {
+    gap: 10px;
+}
+.identity-tags span {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 12px;
+}
+.identity-tags .learning-tag {
+    font-size: 12px;
+}
+.menu-box {
+    min-height: 175px;
+    padding: 20px;
+}
+.menu-title {
+    font-size: 20px;
+}
+.menu-caption {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-top: 8px;
+}
+.project-label {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.6;
+}
+.project-art {
+    bottom: 38px;
+}
+.eyebrow, .contact-info h2 {
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.intro-description {
+    font-size: 16px;
+    line-height: 1.9;
+}
+.contact-info p {
+    font-size: 16px;
+    line-height: 1.9;
+}
+.contact-info .contact-note {
+    font-size: 13px;
+    opacity: .85;
+}
+.detail-card p, .detail-card li {
+    font-size: 16px;
+}
+.tag {
+    font-size: 14px;
+}
 @media (max-width:600px) {
-    .header-label, .header-label span { font-size:12px; letter-spacing:.5px; }
-    .identity-role { font-size:18px; }
-    .identity-description { font-size:15px; }
-    .menu-box { min-height:175px; padding:16px 12px; }
-    .menu-title { font-size:clamp(15px, 4.4vw, 20px); }
-    .menu-caption { font-size:13px; }
-    .menu-arrow { display:none; }
-    .project-label { font-size:12px; }
-    .project-art { bottom:48px; }
-    .intro-description { font-size:15px; }
+    .header-label, .header-label span {
+        font-size: 12px;
+        letter-spacing: .5px;
+    }
+    .identity-role {
+        font-size: 18px;
+    }
+    .identity-description {
+        font-size: 15px;
+    }
+    .menu-box {
+        min-height: 175px;
+        padding: 16px 12px;
+    }
+    .menu-title {
+        font-size: clamp(15px, 4.4vw, 20px);
+    }
+    .menu-caption {
+        font-size: 13px;
+    }
+    .menu-arrow {
+        display: none;
+    }
+    .project-label {
+        font-size: 12px;
+    }
+    .project-art {
+        bottom: 48px;
+    }
+    .intro-description {
+        font-size: 15px;
+    }
 }
 
-/* 넓은 상세 창에서 정보별로 읽기 쉬운 배치 */
+/* ?��? ?�세 창에???�보별로 ?�기 ?�운 배치 */
+/* ?�세 ?�업???��? ?�면??2???�이?�웃�??��? ?�면???�배�?*/
 .modal-body {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -905,7 +1219,7 @@ button {
     gap: 32px;
     padding: 26px;
     border-radius: 16px;
-    background: var(--soft-green);
+    background: var(--soft-blue);
 }
 
 .profile-photo {
@@ -934,7 +1248,7 @@ button {
 }
 
 .hobby-item + .hobby-item {
-    border-left: 1px solid rgb(3 36 7 / 15%);
+    border-left: 1px solid rgb(24 48 82 / 15%);
     padding-left: 22px;
 }
 
@@ -943,49 +1257,93 @@ button {
 }
 
 .modal-panel[data-section="career"] .detail-card {
-    border-left: 3px solid rgb(3 36 7 / 45%);
+    border-left: 3px solid rgb(24 48 82 / 45%);
 }
 
 .modal-panel[data-section="career"] .career-period {
     display: inline-block;
     padding: 4px 10px;
     border-radius: 6px;
-    background: var(--soft-green);
+    background: var(--soft-blue);
     margin-bottom: 12px;
 }
 
 @media (max-width:800px) {
-    .modal-scroll { padding:32px 66px 36px 28px; }
-    .modal-body { grid-template-columns:1fr; gap:18px; }
-    .modal-body > .detail-card { padding:22px; }
-    .hobby-copy { grid-template-columns:1fr; gap:18px; }
-    .hobby-item + .hobby-item { border-left:0; padding-left:0; border-top:1px solid rgb(3 36 7 / 15%); padding-top:18px; }
+    .modal-scroll {
+        padding: 32px 66px 36px 28px;
+    }
+    .modal-body {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+    .modal-body > .detail-card {
+        padding: 22px;
+    }
+    .hobby-copy {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+    .hobby-item + .hobby-item {
+        border-left: 0;
+        padding-left: 0;
+        border-top: 1px solid rgb(24 48 82 / 15%);
+        padding-top: 18px;
+    }
 }
 
 @media (max-width:600px) {
-    .modal { padding:8px; }
-    .modal-panel, .modal-scroll { max-height:calc(100vh - 16px); max-height:calc(100dvh - 16px); }
-    .modal-scroll { padding:24px 62px 28px 16px; }
-    .modal-close { right:10px; top:10px; }
-    .modal-header h2 { font-size:24px; letter-spacing:0; }
-    .modal-body > .detail-card { padding:18px; }
-    .detail-card h3 { font-size:18px; }
-    .profile-summary { padding:20px; gap:20px; }
-    .profile-summary .modal-intro strong { font-size:20px; }
-    .profile-photo { width:144px; }
-    .profile-info > div { grid-template-columns:1fr; gap:2px; }
-    .activity-gallery { gap:18px; }
+    .modal {
+        padding: 8px;
+    }
+    .modal-panel, .modal-scroll {
+        max-height: calc(100vh - 16px);
+        max-height: calc(100dvh - 16px);
+    }
+    .modal-scroll {
+        padding: 24px 62px 28px 16px;
+    }
+    .modal-close {
+        right: 10px;
+        top: 10px;
+    }
+    .modal-header h2 {
+        font-size: 24px;
+        letter-spacing: 0;
+    }
+    .modal-body > .detail-card {
+        padding: 18px;
+    }
+    .detail-card h3 {
+        font-size: 18px;
+    }
+    .profile-summary {
+        padding: 20px;
+        gap: 20px;
+    }
+    .profile-summary .modal-intro strong {
+        font-size: 20px;
+    }
+    .profile-photo {
+        width: 144px;
+    }
+    .profile-info > div {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+    .activity-gallery {
+        gap: 18px;
+    }
 }
 
-/* 테이블 위에 놓인 종이 명함 */
+/* 책상 배경 ?�에 ?�인 종이 명함???�기?� 그림??*/
 body {
     min-height: 100vh;
     min-height: 100dvh;
     display: grid;
     place-items: center;
     padding: clamp(32px, 7vw, 112px);
-    background-color: #33271f;
-    background-image: url("images/office-desk-v2.png");
+    background-color: #e8eef6;
+    background-image: url("images/office-desk-v6.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -998,8 +1356,8 @@ body {
     padding: 40px 56px 54px;
     border: 0;
     border-radius: 2px;
-    background-color: var(--ivory);
-    background-image: repeating-linear-gradient(110deg, transparent 0 3px, rgb(91 78 46 / 1.5%) 4px, transparent 5px 8px);
+    background-color: var(--paper);
+    background-image: repeating-linear-gradient(110deg, transparent 0 3px, rgb(48 82 127 / 2%) 4px, transparent 5px 8px);
     box-shadow:
         0 1px 2px rgb(0 0 0 / 18%),
         5px 12px 24px rgb(0 0 0 / 24%);
@@ -1041,35 +1399,85 @@ body {
 }
 
 @media (max-width:1000px) and (min-width:901px) {
-    body { padding:24px; }
-    .business-card { padding:32px 32px 44px; }
-    .main-layout { grid-template-columns:minmax(0, 1.7fr) minmax(240px, 1fr); column-gap:28px; }
-    .intro-area { right:28px; width:28%; }
-    .menu-box { padding:16px; }
-    .menu-title { font-size:18px; }
-    .menu-caption { font-size:13px; }
-    .menu-arrow { right:12px; }
-    .intro-description, .contact-info p { font-size:14px; }
+    body {
+        padding: 24px;
+    }
+    .business-card {
+        padding: 32px 32px 44px;
+    }
+    .main-layout {
+        grid-template-columns: minmax(0, 1.7fr) minmax(240px, 1fr);
+        column-gap: 28px;
+    }
+    .intro-area {
+        right: 28px;
+        width: 28%;
+    }
+    .menu-box {
+        padding: 16px;
+    }
+    .menu-title {
+        font-size: 18px;
+    }
+    .menu-caption {
+        font-size: 13px;
+    }
+    .menu-arrow {
+        right: 12px;
+    }
+    .intro-description, .contact-info p {
+        font-size: 14px;
+    }
 }
 
 @media (max-width:900px) {
-    body { padding:28px; }
-    .business-card { padding:32px 30px 16px; }
-    .main-layout { min-height:0; padding:32px 0 0; gap:28px; }
-    .intro-area { position:static; width:auto; margin:8px -30px 0; padding:36px 30px 40px; border-radius:0 0 2px 2px; }
+    body {
+        padding: 28px;
+    }
+    .business-card {
+        padding: 32px 30px 16px;
+    }
+    .main-layout {
+        min-height: 0;
+        padding: 32px 0 0;
+        gap: 28px;
+    }
+    .intro-area {
+        position: static;
+        width: auto;
+        margin: 8px -30px 0;
+        padding: 36px 30px 40px;
+        border-radius: 0 0 2px 2px;
+    }
 }
 
 @media (max-width:600px) {
-    body { padding:20px 14px 28px; }
-    .business-card { padding:26px 20px 16px; }
-    .main-layout { padding-top:28px; }
-    .identity h1 { font-size:clamp(28px, 8vw, 40px); }
-    .intro-area { margin:4px -20px 0; padding:30px 24px 36px; }
-    .menu-box { min-height:165px; padding:16px 12px; }
-    .intro-title { font-size:32px; }
+    body {
+        padding: 20px 14px 28px;
+    }
+    .business-card {
+        padding: 26px 20px 16px;
+    }
+    .main-layout {
+        padding-top: 28px;
+    }
+    .identity h1 {
+        font-size: clamp(28px, 8vw, 40px);
+    }
+    .intro-area {
+        margin: 4px -20px 0;
+        padding: 30px 24px 36px;
+    }
+    .menu-box {
+        min-height: 165px;
+        padding: 16px 12px;
+    }
+    .intro-title {
+        font-size: 32px;
+    }
 }
 
-/* 가로형 화면에서는 실제 명함의 9:5 비율 유지 */
+/* 가로형 ?�면?�서???�제 명함??9:5 비율 ?��? */
 @media (min-width:901px) {
     .business-card {
         aspect-ratio: 9 / 5;
@@ -1079,8 +1487,13 @@ body {
         container-type: inline-size;
     }
 
-    .header { flex-shrink:0; }
-    .header-label { margin-top:8px; font-size:11px; }
+    .header {
+        flex-shrink: 0;
+    }
+    .header-label {
+        margin-top: 8px;
+        font-size: 11px;
+    }
     .main-layout {
         flex: 1;
         min-height: 0;
@@ -1091,33 +1504,106 @@ body {
         row-gap: 20px;
     }
 
-    .identity-caption { font-size:14px; margin-bottom:8px; }
-    .identity h1 { font-size:clamp(30px, 3.8cqw, 44px); }
-    .identity h1 span { margin-top:8px; font-size:12px; }
-    .identity-role { margin-top:16px; font-size:18px; }
-    .identity-description { margin-top:8px; font-size:14px; line-height:1.7; }
-    .identity-tags { margin-top:12px; gap:8px; }
-    .identity-tags span { font-size:12px; padding:4px 9px; }
-    .identity-tags .learning-tag { font-size:10px; }
+    .identity-caption {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    .identity h1 {
+        font-size: clamp(30px, 3.8cqw, 44px);
+    }
+    .identity h1 span {
+        margin-top: 8px;
+        font-size: 12px;
+    }
+    .identity-role {
+        margin-top: 16px;
+        font-size: 18px;
+    }
+    .identity-description {
+        margin-top: 8px;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+    .identity-tags {
+        margin-top: 12px;
+        gap: 8px;
+    }
+    .identity-tags span {
+        font-size: 12px;
+        padding: 4px 9px;
+    }
+    .identity-tags .learning-tag {
+        font-size: 10px;
+    }
 
-    .contents-menu { height:100%; gap:12px; }
-    .menu-box { min-height:0; padding:14px 16px; }
-    .menu-title { font-size:18px; }
-    .menu-caption { font-size:13px; margin-top:4px; }
-    .menu-art { width:62px; right:12px; bottom:4px; }
-    .project-art { width:66px; right:12px; bottom:4px; }
-    .menu-arrow { width:26px; height:26px; top:12px; right:12px; }
+    .contents-menu {
+        height: 100%;
+        gap: 12px;
+    }
+    .menu-box {
+        min-height: 0;
+        padding: 14px 16px;
+    }
+    .menu-title {
+        font-size: 18px;
+    }
+    .menu-caption {
+        font-size: 13px;
+        margin-top: 4px;
+    }
+    .menu-art {
+        width: 62px;
+        right: 12px;
+        bottom: 4px;
+    }
+    .project-art {
+        width: 66px;
+        right: 12px;
+        bottom: 4px;
+    }
+    .menu-arrow {
+        width: 26px;
+        height: 26px;
+        top: 12px;
+        right: 12px;
+    }
 
-    .intro-area { top:76px; bottom:42px; right:32px; width:28%; gap:20px; }
-    .intro-title { font-size:clamp(26px, 3.2cqw, 38px); margin-top:12px; }
-    .intro-description { font-size:14px; margin-top:14px; line-height:1.8; }
-    .eyebrow, .contact-info h2 { font-size:12px; }
-    .contact-info h2 { margin-bottom:10px; }
-    .contact-info p { font-size:14px; line-height:1.75; }
-    .contact-info .contact-name { font-size:20px; }
-    .contact-info .contact-note { font-size:11px; margin-top:10px; }
+    .intro-area {
+        top: 76px;
+        bottom: 42px;
+        right: 32px;
+        width: 28%;
+        gap: 20px;
+    }
+    .intro-title {
+        font-size: clamp(26px, 3.2cqw, 38px);
+        margin-top: 12px;
+    }
+    .intro-description {
+        font-size: 14px;
+        margin-top: 14px;
+        line-height: 1.8;
+    }
+    .eyebrow, .contact-info h2 {
+        font-size: 12px;
+    }
+    .contact-info h2 {
+        margin-bottom: 10px;
+    }
+    .contact-info p {
+        font-size: 14px;
+        line-height: 1.75;
+    }
+    .contact-info .contact-name {
+        font-size: 20px;
+    }
+    .contact-info .contact-note {
+        font-size: 11px;
+        margin-top: 10px;
+    }
 }
 
+/* ?�어 ?�택 버튼�??�어�?글??보정 */
 .language-switcher {
     position: absolute;
     top: 22px;
@@ -1126,9 +1612,9 @@ body {
     display: flex;
     gap: 3px;
     padding: 4px;
-    border: 1px solid rgb(248 247 238 / 25%);
+    border: 1px solid rgb(239 246 255 / 25%);
     border-radius: 999px;
-    background: rgb(248 247 238 / 8%);
+    background: rgb(239 246 255 / 8%);
 }
 
 .language-switcher button {
@@ -1137,44 +1623,66 @@ body {
     padding: 6px 10px;
     font-size: 12px;
     line-height: 1.4;
-    color: var(--ivory);
+    color: var(--paper);
     background: transparent;
     cursor: pointer;
 }
 
 .language-switcher button[aria-pressed="true"] {
-    background: var(--ivory);
-    color: var(--green);
+    background: var(--paper);
+    color: var(--navy);
     font-weight: 700;
 }
 
-.language-switcher button:hover { background:rgb(248 247 238 / 20%); }
-.language-switcher button[aria-pressed="true"]:hover { background:var(--ivory); }
-.language-switcher button:focus-visible { outline:2px solid currentColor; outline-offset:2px; }
+.language-switcher button:hover {
+    background: rgb(239 246 255 / 20%);
+}
+.language-switcher button[aria-pressed="true"]:hover {
+    background: var(--paper);
+}
+.language-switcher button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
 
-html[lang="en"] .identity h1 { letter-spacing:-1px; font-size:clamp(25px, 3cqw, 36px); }
-html[lang="en"] .identity h1 span { display:none; }
-html[lang="en"] .identity-role { font-size:16px; }
-html[lang="en"] .menu-caption { font-size:12px; }
-html[lang="en"] .intro-description { overflow-wrap:anywhere; }
-html[lang="en"] .profile-info > div { grid-template-columns:90px minmax(0, 1fr); }
 
 @media (max-width:900px) {
-    .business-card { padding-top:76px; }
-    .language-switcher { top:20px; right:20px; background:rgb(52 85 62 / 6%); border-color:rgb(3 36 7 / 20%); }
-    .language-switcher button { color:var(--green); }
-    .language-switcher button[aria-pressed="true"] { color:var(--ivory); background:var(--green); }
-    .language-switcher button:hover { background:rgb(52 85 62 / 12%); }
-    .language-switcher button[aria-pressed="true"]:hover { background:var(--green); }
-    html[lang="en"] .identity h1 { font-size:clamp(25px, 5vw, 40px); }
+    .business-card {
+        padding-top: 76px;
+    }
+    .language-switcher {
+        top: 20px;
+        right: 20px;
+        background: rgb(67 101 148 / 6%);
+        border-color: rgb(24 48 82 / 20%);
+    }
+    .language-switcher button {
+        color: var(--navy);
+    }
+    .language-switcher button[aria-pressed="true"] {
+        color: var(--paper);
+        background: var(--navy);
+    }
+    .language-switcher button:hover {
+        background: rgb(67 101 148 / 12%);
+    }
+    .language-switcher button[aria-pressed="true"]:hover {
+        background: var(--navy);
+    }
 }
 
 @media (max-width:600px) {
-    .language-switcher { right:16px; top:16px; }
-    .language-switcher button { font-size:11px; padding:6px 9px; }
-    html[lang="en"] .profile-info > div { grid-template-columns:1fr; }
+    .language-switcher {
+        right: 16px;
+        top: 16px;
+    }
+    .language-switcher button {
+        font-size: 11px;
+        padding: 6px 9px;
+    }
 }
 
+/* 처음?�는 ?��? 명함�?보여 주고, ?�치기·접�?버튼?�로 ?�면???�환?�니?? */
 .business-card[hidden], .card-preview[hidden], .card-collapse[hidden] {
     display: none;
 }
@@ -1195,30 +1703,64 @@ html[lang="en"] .profile-info > div { grid-template-columns:90px minmax(0, 1fr);
     padding: 18px 24px;
     border: 0;
     border-radius: 2px;
-    color: var(--green);
-    background: linear-gradient(to right, var(--ivory) 70%, var(--green) 70%);
+    color: var(--navy);
+    background: linear-gradient(to right, var(--paper) 70%, var(--navy) 70%);
     box-shadow: 0 1px 2px rgb(0 0 0 / 24%), 4px 8px 14px rgb(0 0 0 / 30%);
-    transform: rotate(-7deg);
+    transform: none;
     cursor: zoom-in;
     transition: transform .25s ease, box-shadow .25s ease;
 }
 
 .card-preview-button:hover {
-    transform: rotate(-4deg) translateY(-4px);
+    transform: translateY(-4px);
     box-shadow: 0 2px 3px rgb(0 0 0 / 20%), 8px 16px 24px rgb(0 0 0 / 35%);
 }
 
 .card-preview-button:focus-visible {
-    outline: 3px solid var(--ivory);
+    outline: 3px solid var(--paper);
     outline-offset: 6px;
 }
 
-.preview-label { font-size:8px; letter-spacing:1.4px; border-top:2px solid var(--green); padding-top:7px; }
-.preview-name { margin-top:15px; max-width:68%; font-size:24px; font-weight:700; line-height:1.2; letter-spacing:-.5px; text-align:left; }
-.preview-roman { margin-top:6px; font-size:8px; letter-spacing:1.5px; }
-.preview-role { margin-top:8px; max-width:68%; font-size:10px; line-height:1.4; text-align:left; }
-.preview-contact { margin-top:auto; padding-top:10px; font-size:8px; }
-.card-open-hint { padding:8px 15px; border-radius:999px; color:var(--ivory); background:rgb(0 0 0 / 28%); font-size:13px; letter-spacing:.5px; }
+.preview-label {
+    font-size: 8px;
+    letter-spacing: 1.4px;
+    border-top: 2px solid var(--navy);
+    padding-top: 7px;
+}
+.preview-name {
+    margin-top: 15px;
+    max-width: 68%;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -.5px;
+    text-align: left;
+}
+.preview-roman {
+    margin-top: 6px;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+}
+.preview-role {
+    margin-top: 8px;
+    max-width: 68%;
+    font-size: 10px;
+    line-height: 1.4;
+    text-align: left;
+}
+.preview-contact {
+    margin-top: auto;
+    padding-top: 10px;
+    font-size: 8px;
+}
+.card-open-hint {
+    padding: 8px 15px;
+    border-radius: 999px;
+    color: var(--paper);
+    background: rgb(0 0 0 / 28%);
+    font-size: 13px;
+    letter-spacing: .5px;
+}
 
 .card-collapse {
     position: fixed;
@@ -1227,50 +1769,80 @@ html[lang="en"] .profile-info > div { grid-template-columns:90px minmax(0, 1fr);
     bottom: 16px;
     transform: translateX(-50%);
     padding: 10px 18px;
-    border: 1px solid rgb(248 247 238 / 30%);
+    border: 1px solid rgb(239 246 255 / 30%);
     border-radius: 999px;
     background: rgb(20 25 20 / 85%);
-    color: var(--ivory);
+    color: var(--paper);
     font-size: 13px;
     cursor: pointer;
 }
 
-.card-collapse:focus-visible { outline:2px solid var(--ivory); outline-offset:3px; }
-.modal-open .card-collapse { visibility:hidden; }
-.card-expanded .business-card { animation:card-unfold .45s cubic-bezier(.2,.75,.25,1) both; }
+.card-collapse:focus-visible {
+    outline: 2px solid var(--paper);
+    outline-offset: 3px;
+}
+.modal-open .card-collapse {
+    visibility: hidden;
+}
+.card-expanded .business-card {
+    animation: card-unfold .45s cubic-bezier(.2,.75,.25,1) both;
+}
 @keyframes card-unfold {
-    from { opacity:.5; transform:scale(.35) rotate(-7deg); }
-    to { opacity:1; transform:none; }
+    from {
+        opacity: .5;
+        transform: scale(.9) translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
 }
 
-html[lang="en"] .preview-name { font-size:19px; }
-html[lang="en"] .preview-roman { visibility:hidden; }
 
 @media (max-width:600px) {
-    .card-expanded { padding-bottom:72px; }
-    .card-preview-button { padding:18px 20px; }
-    .preview-name { font-size:22px; margin-top:12px; }
-    .preview-contact { display:none; }
+    .card-expanded {
+        padding-bottom: 72px;
+    }
+    .card-preview-button {
+        padding: 18px 20px;
+    }
+    .preview-name {
+        font-size: 22px;
+        margin-top: 12px;
+    }
+    .preview-contact {
+        display: none;
+    }
 }
 
 @media (prefers-reduced-motion:reduce) {
-    .card-expanded .business-card { animation:none; }
-    .card-preview-button { transition:none; }
-}
-
-ruby[data-furigana] {
-    ruby-position: over;
-    ruby-align: center;
-}
-
-ruby[data-furigana] rt {
-    font-size: .5em;
-    font-weight: 400;
-    letter-spacing: 0;
-    line-height: 1;
+    .card-expanded .business-card {
+        animation: none;
+    }
+    .card-preview-button {
+        transition: none;
+    }
 }
 
 html[lang="ja"] .modal-body h3,
 html[lang="ja"] .modal-body h4 {
     line-height: 1.9;
+}
+
+/* ���� ȭ�鿡���� �޴� �׸��� ī�� ������ �°� ���̵��� ũ�⸦ �����մϴ�. */
+@media (max-width: 900px) {
+
+    .menu-art {
+        width: 70px;
+    }
+
+    .project-art {
+        width: 68px;
+    }
+
+    .menu-title,
+    .menu-caption,
+    .project-label {
+        max-width: calc(100% - 58px);
+    }
 }
