@@ -228,25 +228,26 @@ const portfolioContent = {
         lang: "ja",
         html: `
             <p class="modal-intro">
-                JLPTレベルと分野から学習内容を選べる、個人開発の日本語単語学習アプリです。
+                制作物をチームプロジェクトと個人プロジェクトに分けて紹介します。
             </p>
 
             <div class="detail-card">
-                <h3>概要</h3>
-                <p>単語カードで漢字・ふりがな・意味・例文を確認し、Day単位で学習を進めます。生活・ビジネス・ITの分野に、電話応対や敬語表現を含む語彙を収録しています。</p>
+                <h3>チームプロジェクト</h3>
+                <p>現在、掲載できるチームプロジェクトはありません。プロジェクトに参加した後、概要・担当範囲・使用技術・成果を追加します。</p>
             </div>
 
             <div class="detail-card">
-                <h3>主な機能</h3>
+                <h3>個人プロジェクト</h3>
+                <p><strong>日本語単語学習アプリ</strong></p>
+                <p>JLPTレベルと分野から学習内容を選べる、日本語単語学習アプリです。</p>
+                <p><strong>概要</strong><br>単語カードで漢字・ふりがな・意味・例文を確認し、Day単位で学習を進めます。生活・ビジネス・ITの分野に、電話応対や敬語表現を含む語彙を収録しています。</p>
+                <p><strong>主な機能</strong></p>
                 <ul>
                     <li>ふりがな・意味を必要なタイミングで表示し、例文の読みも確認</li>
                     <li>学習レベル・分野・Dayを選び、カードを一枚ずつ復習</li>
                     <li>お気に入り、「知っている／まだ覚えていない」の記録、Dayの学習完了回数を表示</li>
                 </ul>
-            </div>
-
-            <div class="detail-card">
-                <h3>使用技術</h3>
+                <p><strong>使用技術</strong></p>
                 <div class="tag-list">
                     <span class="tag">HTML</span>
                     <span class="tag">CSS</span>
@@ -256,10 +257,7 @@ const portfolioContent = {
                     <span class="tag">MySQL</span>
                     <span class="tag">PWA</span>
                 </div>
-            </div>
-
-            <div class="detail-card">
-                <h3>担当範囲・進め方</h3>
+                <p><strong>担当範囲・進め方</strong></p>
                 <p>個人プロジェクトの企画、学習フローと画面要件の整理、単語・例文の内容確認、実画面での動作確認と改善点の整理を行いました。実装にはCodex（生成AI）を補助的に活用し、提案内容を確認しながら修正を重ねています。</p>
                 <p><a href="https://github.com/pds838a-jpg/japanese-vocabulary-app" target="_blank" rel="noopener noreferrer">GitHubでコードを見る →</a></p>
             </div>
