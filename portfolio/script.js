@@ -183,25 +183,40 @@ const portfolioContent = {
         title: "SKILLS",
         html: `
             <p class="modal-intro">
-                使用経験のある技術と、現在学習中の技術を紹介します。
+                授業と個人プロジェクトで学習・使用した技術と、開発で取り組んだ内容です。
             </p>
 
             <div class="detail-card">
                 <h3>FRONTEND</h3>
-                <p>実際に使用したことのある技術に合わせて、下のタグを編集してください。</p>
+                <p>HTML・CSS・JavaScriptで学習画面を構成し、スマートフォン表示や操作を確認しました。</p>
                 <div class="tag-list">
                     <span class="tag">HTML</span>
                     <span class="tag">CSS</span>
                     <span class="tag">JavaScript</span>
+                    <span class="tag">Responsive UI</span>
                 </div>
             </div>
 
             <div class="detail-card">
-                <h3>BACKEND / TOOLS</h3>
-                <p>学習中、またはプロジェクトで使用した言語やツールを記入してください。</p>
+                <h3>BACKEND / DATABASE</h3>
+                <p>Java 21・Spring Boot・MySQLを個人プロジェクトに取り入れ、APIとデータベースのつながりを学びました。</p>
                 <div class="tag-list">
-                    <span class="tag">Java</span>
+                    <span class="tag">Java 21</span>
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">MySQL</span>
+                </div>
+            </div>
+
+            <div class="detail-card">
+                <h3>TOOLS &amp; PROJECT PRACTICE</h3>
+                <p>要件整理、画面と学習内容の確認、動作チェックを重ね、Codexを補助ツールとして開発を進めました。</p>
+                <div class="tag-list">
+                    <span class="tag">Git / GitHub</span>
                     <span class="tag">VS Code</span>
+                    <span class="tag">Codex · AI-assisted</span>
+                    <span class="tag">要件整理</span>
+                    <span class="tag">UI review</span>
+                    <span class="tag">Content QA</span>
                 </div>
             </div>
         `
@@ -210,14 +225,43 @@ const portfolioContent = {
     // PROJECTS: 진행 중이거나 소개할 프로젝트
     projects: {
         title: "PROJECTS",
+        lang: "ja",
         html: `
             <p class="modal-intro">
-                チーム開発・個人開発のプロジェクトを準備中です。
+                JLPTレベルと分野から学習内容を選べる、個人開発の日本語単語学習アプリです。
             </p>
 
             <div class="detail-card">
-                <h3>制作予定</h3>
-                <p>プロジェクトが完成したら、制作内容や使用技術、担当した役割をここに追加する予定です。</p>
+                <h3>概要</h3>
+                <p>単語カードで漢字・ふりがな・意味・例文を確認し、Day単位で学習を進めます。生活・ビジネス・ITの分野に、電話応対や敬語表現を含む語彙を収録しています。</p>
+            </div>
+
+            <div class="detail-card">
+                <h3>主な機能</h3>
+                <ul>
+                    <li>ふりがな・意味を必要なタイミングで表示し、例文の読みも確認</li>
+                    <li>学習レベル・分野・Dayを選び、カードを一枚ずつ復習</li>
+                    <li>お気に入り、「知っている／まだ覚えていない」の記録、Dayの学習完了回数を表示</li>
+                </ul>
+            </div>
+
+            <div class="detail-card">
+                <h3>使用技術</h3>
+                <div class="tag-list">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Java 21</span>
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">PWA</span>
+                </div>
+            </div>
+
+            <div class="detail-card">
+                <h3>担当範囲・進め方</h3>
+                <p>個人プロジェクトの企画、学習フローと画面要件の整理、単語・例文の内容確認、実画面での動作確認と改善点の整理を行いました。実装にはCodex（生成AI）を補助的に活用し、提案内容を確認しながら修正を重ねています。</p>
+                <p><a href="https://github.com/pds838a-jpg/japanese-vocabulary-app" target="_blank" rel="noopener noreferrer">GitHubでコードを見る →</a></p>
             </div>
         `
     },
@@ -291,7 +335,7 @@ const portfolioContent = {
                 <h3>グローバルイン（韓国法人） · 日本IT就職コース</h3>
                 <p>目標を実際の準備につなげるため、2026年8月から日本IT就職スクールで開発と日本語を学んでいます。
                     HTML・CSS・JavaScriptの基礎を学び、現在はJavaを学習中です。</p>
-                <p>チーム・個人のプロジェクトには今後取り組む予定です。Zennに学習内容をまとめながら、基礎を固めていきたいと考えています。</p>
+                <p>個人プロジェクトとして日本語単語学習アプリを制作し、学習画面やカード機能の改善を続けています。要件整理から内容の確認、動作チェックまで取り組み、学んだことを成果物につなげています。</p>
             </div>
 
             <section class="detail-card" aria-labelledby="career-strengths">
